@@ -36,6 +36,7 @@ class Solution {
             else
                 invalid = true;
         }
+        //Creating hashmap
         HashMap <String, Integer> map = new HashMap<String, Integer>();
         if(invalid == false)
         {
