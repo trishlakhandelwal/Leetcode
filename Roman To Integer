@@ -1,56 +1,56 @@
 class Solution {
     public int romanToInt(String s) {
-        int length = s.length();
-        s.toUpperCase();
         boolean invalid = false;
         int sum = 0;
-        if(length<1 || length>15)
+        if(s.length()<1 || s.length()>15)
             invalid = true;
-        else
+        s.toUpperCase();
+        for(int i = 0; i<s.length(); i++)
         {
-            for(int i = 0; i<length; i++)
+            char x = s.charAt(i);
+            if(x=='I' || x=='V' || x=='X' || x=='L' || x=='C' || x=='D' || x=='M')
             {
-                char x = s.charAt(i);
-                if(x=='I' || x=='V' || x=='X' || x=='L' || x=='C' || x=='D' || x=='M')
+                invalid = false;
+                if(x == 'I' && i<s.length()-1)
                 {
-                    if(x=='I')
-                    {
-                        if(i>length-1 && s.charAt(i+1)=='V') {sum = sum + 4; i++;}
-                        else if (i>length-1 && s.charAt(i+1)=='X') {sum = sum + 9; i++;}
-                            else
-                                 sum = sum + 1;
-                    }
-                    else if(x=='V')
-                        sum = sum + 5;
-                    else if(x=='L')
-                        sum = sum + 50;
-                    else if(x=='D')
-                        sum = sum + 500;
-                    else if(x=='M')
-                        sum = sum + 1000;
-                    else if(x=='X') {
-                        if(i>length-1 && s.charAt(i+1)=='L') {sum = sum + 40; i++;}
-                        else if (i>length-1 && s.charAt(i+1)=='C') {sum = sum + 90; i++;}
-                            else
-                                 sum = sum + 10;
-                    }
-                     else if(x=='C') {
-                        if(i>length-1 && s.charAt(i+1)=='D') {sum = sum + 400; i++;}
-                        else if (i>length-1 && s.charAt(i+1)=='M') {sum = sum + 900; i++;}
-                            else
-                                 sum = sum + 100;
+                    if (s.charAt(i+1) == 'V') 
+                        s= s.replace("IV","IIII");
+                    else if (s.charAt(i+1) == 'X') 
+                        s= s.replace("IX","VIIII");
                 }
-                else
+                if(x == 'X' && i<s.length()-1)
                 {
-                    invalid = true;
-                    break;
-                }    
+                    if (s.charAt(i+1) == 'L') 
+                        s= s.replace("XL","XXXX");
+                    else if (s.charAt(i+1) == 'C') 
+                        s= s.replace("XC","LXXXX");
+                }
+                if(x == 'C' && i<s.length()-1)
+                {
+                    if (s.charAt(i+1) == 'D') 
+                        s= s.replace("CD","CCCC");
+                    else if (s.charAt(i+1) == 'M') 
+                        s= s.replace("CM","DCCCC");
+                }
+            }
+            else
+                invalid = true;
         }
+        HashMap <String, Integer> map = new HashMap<String, Integer>();
+        if(invalid == false)
+        {
+            map.put("I", 1);
+            map.put("V", 5);
+            map.put("X", 10);
+            map.put("L", 50);
+            map.put("C", 100);
+            map.put("D", 500);
+            map.put("M", 1000);
+            for(int i = 0; i<s.length(); i++)
+            {
+                sum = sum + map.get(Character.toString(s.charAt(i)));
+            }
         }
-        }
-        if(invalid == true)
-            return 0;
-        else
-            return sum;    
-}
+        return sum;
+    }
 }
