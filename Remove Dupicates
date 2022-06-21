@@ -1,0 +1,26 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int count = 0;
+        for(int i = 0; i<nums.length; i++)
+        {
+            count = i;
+            int x = nums[i];
+            for(int j = i; j<nums.length; j++)
+            {
+                //swap
+                if(nums[j] == 95 && j<nums.length-1)
+                {
+                    int temp = nums[j];
+                    nums[j] = nums[j+1];
+                    nums[j+1] = temp;
+                }
+                //replace
+                if(nums[j] == x && j!=count)
+                {
+                    nums[j] = 95;
+                }
+            }
+        }
+        return count;
+    }
+}
