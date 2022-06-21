@@ -1,26 +1,47 @@
 class Solution {
-    public int removeDuplicates(int[] nums) {
+    public int removeDuplicates(int[] nums)
+    {
         int count = 0;
         for(int i = 0; i<nums.length; i++)
         {
             count = i;
             int x = nums[i];
-            for(int j = i; j<nums.length; j++)
+            int q = 0;
+            while(q<nums.length)
             {
-                //swap
-                if(nums[j] == 95 && j<nums.length-1)
-                {
-                    int temp = nums[j];
-                    nums[j] = nums[j+1];
-                    nums[j+1] = temp;
-                }
                 //replace
-                if(nums[j] == x && j!=count)
+                if(nums[q] == x && q!=count)
                 {
-                    nums[j] = 95;
+                    nums[q] = 95;
                 }
+                q++;
+            }
+        }
+        for(int j = 0; j<nums.length; j++)  
+        {
+            //swap
+            count = 0;
+            while(count<nums.length)
+            {
+                if(nums[count] == 95 && count<nums.length-1)
+                {
+                    int temp = nums[count];
+                    nums[count] = nums[count+1];
+                    nums[count+1] = temp;
+                }
+                count++;
+            }
+            
+            for(int s = 0; s<nums.length; s++)
+            {
+                if(nums[s] == 95)
+                {
+                    count = s;
+                    break;
+                }
+
             }
         }
         return count;
-    }
+    }   
 }
