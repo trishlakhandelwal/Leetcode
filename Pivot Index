@@ -1,0 +1,33 @@
+class Solution {
+    public int pivotIndex(int[] nums) {
+        int check = -1;
+        int i = 0;
+        while(i<nums.length)
+        {
+            int left = 0, right = 0;
+            int pos = i;
+            int j = pos + 1;
+            for(int x = 0; x<nums.length; x++)
+            {
+                if(x<=pos)
+                {
+                    left = left + nums[x];
+                }  
+                if(j<nums.length-1)
+                {
+                    right = right + nums[j];
+                    j++;
+                }
+                if(left == right)
+                {
+                    if(left == 0)
+                        check = pos;
+                    else
+                        check = pos + 1;
+                }
+            }
+            i++;
+        }
+        return check;
+    }
+}
