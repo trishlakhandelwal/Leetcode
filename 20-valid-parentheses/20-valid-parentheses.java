@@ -1,6 +1,6 @@
 class Solution {
     public boolean isValid(String s) {
-        //every opening parenthesis will have a closing, hence a valis string should have even no. of characters in the string
+        //every opening parenthesis will have a closing, hence a valid string should have even no. of characters in the string
         if(s.length()%2!=0)
             return false;
         else 
@@ -18,7 +18,8 @@ class Solution {
                else if(c==']' && !stack.isEmpty() && stack.peek()=='[')
                    stack.pop(); 
                 else 
-                    stack.add(s.charAt(i));
+                    //stack.add(c); this also works
+                    stack.push(c);
                 }
             return stack.isEmpty(); //stack should be empty at the end if its a valid string
         }
