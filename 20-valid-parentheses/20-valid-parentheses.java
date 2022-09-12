@@ -18,8 +18,8 @@ class Solution {
                else if(c==']' && !stack.isEmpty() && stack.peek()=='[')
                    stack.pop(); 
                 else 
-                    //stack.add(c); this also works
-                    stack.push(c);
+                    stack.add(c); 
+                    //stack.push(c); this also works but runtime and memory increases
                 }
             return stack.isEmpty(); //stack should be empty at the end if its a valid string
         }
